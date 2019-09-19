@@ -1,0 +1,22 @@
+---
+title: "class-report"
+author: "Billy Koech"
+date: "9/19/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+file_path <- "raw-data/class_enrollment_summary_by_term_9.19.19.xlsx"
+
+enrollment_data <- read_xlsx(file_path, skip = 3)
+
+# Find largest english class
+enrollment_data %>% filter(`Course Department` == "English") %>% arrange(desc(UGrad)) %>% select(UGrad, `Course Title`)
+```
+
